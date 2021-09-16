@@ -1,6 +1,11 @@
 <?php
 require __DIR__ . '/vendor/autoload.php';
- 
+
+$dotenv = new Dotenv\Dotenv(
+);
+$dotenv->load();
+echo getenv('ENV_VAR');
+
 ##########################################################
 ### Marketplace Account Deletion Notifications Handler ###
 ### By Swappart 2021                                   ###
