@@ -1,7 +1,5 @@
 <?php
 require __DIR__ . '/vendor/autoload.php';
-
-<?php
  
 ##########################################################
 ### Marketplace Account Deletion Notifications Handler ###
