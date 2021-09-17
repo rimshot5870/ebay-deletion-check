@@ -22,7 +22,8 @@ $endpoint = "YourEndpointURL";
  
 // Sets base file location to one level above webroot. You can
 // change this if you want to use a specific location.
-$fileStorageLocation = realpath(dirname(__FILE__) . '/..');
+// $fileStorageLocation = realpath(dirname(__FILE__) . '/..');
+$fileStorageLocation = '/files/';
  
  
  
