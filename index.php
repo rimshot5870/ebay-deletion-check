@@ -17,9 +17,9 @@ echo 'My variable is ' .$_ENV["ENV_VAR"] . '!';
 ### characters include alphanumeric characters, underscore (_),  and hyphen (-).
 ### No other characters are allowed. Example: 654321abcdef654321abcefd123456fe;
  
-$client_id =  "Your client ID goes here";  //Also known as App ID.
-$client_secret =  "Your client secret goes here"; //Also known as Cert ID.
-$verificationToken = "Your verification token goes here";
+$client_id =  $_ENV["CLIENT_ID"];  //Also known as App ID.
+$client_secret =  $_ENV["CLIENT_SECRET"]; //Also known as Cert ID.
+$verificationToken = $_ENV["VERIFICATIONTOKEN"];
 $endpoint = $_ENV["ENDPOINT"];
  
 // Sets base file location to one level above webroot. You can
