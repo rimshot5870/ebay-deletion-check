@@ -20,7 +20,7 @@ echo 'My variable is ' .$_ENV["ENV_VAR"] . '!';
 $client_id =  "Your client ID goes here";  //Also known as App ID.
 $client_secret =  "Your client secret goes here"; //Also known as Cert ID.
 $verificationToken = "Your verification token goes here";
-$endpoint = "YourEndpointURL";
+$endpoint = $_ENV["ENDPOINT"];
  
 // Sets base file location to one level above webroot. You can
 // change this if you want to use a specific location.
