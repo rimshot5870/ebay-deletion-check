@@ -1,7 +1,8 @@
 <?php
 require __DIR__ . '/vendor/autoload.php';
 
-echo 'My variable is ' .$_ENV["ENV_VAR"] . '!';
+// Test variable write
+// echo 'My variable is ' .$_ENV["ENV_VAR"] . '!';
  
 ##########################################################
 ### Marketplace Account Deletion Notifications Handler ###
