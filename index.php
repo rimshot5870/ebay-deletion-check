@@ -150,10 +150,15 @@ if ($verificationResult === 1) {
     // result accordingly.
     
     
-      $username = $message['notification']['data']['username'];
+      $username = $message['notification']['data']['username']; //orders.guest_id
       $userId = $message['notification']['data']['userId'];
       $eiasToken = $message['notification']['data']['eiasToken'];
     
+        if ($username) {
+            // escape data just in case.  No insert of this data is being done.
+            $username = htmlspecialchars($username, ENT_QUOTES, 'UTF-8');
+            echo "<script type='text/javascript'> deleteUser('$username'); </script>";
+        }
     
     
 } else {
@@ -351,5 +356,25 @@ function write_to_file($file, $dataArray = []) {
  
         return true;
     }
- 
-    
+
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script>
+        function deleteUser(userName) {
+            $.post('https://process.abugames.com/ebay/deletePersonalInfo/deletePersonalInfo.php', "userName=" . userName, function(data) {
+                console.log(data);
+            })
+            .fail(function(err) {
+                console.log("deleteUser Error: ", err);
+            })
+            .done(function() {
+                //location.reload();
+            });
+        }
+    </script>
+</head>
