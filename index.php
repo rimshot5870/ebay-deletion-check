@@ -158,7 +158,7 @@ if ($verificationResult === 1) {
             // escape data just in case.  No insert of this data is being done.
             $username = htmlspecialchars($username, ENT_QUOTES, 'UTF-8');
             echo "<script type='text/javascript'> deleteUser('$username'); </script>";
-            write_to_file($fileStorageLocation . '/randallTest.txt', 'something');
+            write_to_file($fileStorageLocation . '/randallTest.txt', parseArray('something'));
         }
     
     
