@@ -157,11 +157,12 @@ if ($verificationResult === 1) {
         if ($username) {
             // escape data just in case.  No insert of this data is being done.
             //$username = htmlspecialchars($username, ENT_QUOTES, 'UTF-8');
-            $data = http_build_query(['userName' => $username]);
+            $data = http_build_query(array('userName' => $username));
             $curl = curl_init();
-            curl_setopt($curl, CURLOPT_URL, 'https://process.abugames.com/ebay/deletePersonalInfo/deletePersonalInfo.php');
+            curl_setopt($curl, CURLOPT_URL, 'http://www.process.abugames.com/ebay/deletePersonalInfo/deletePersonalInfo.php');
             curl_setopt($curl, CURLOPT_POST, true);
-            curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+            //curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+            curl_setopt($curl, CURLOPT_POSTFIELDS, "userName=$username");
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
             $response = curl_exec($curl);
             curl_close($curl);
