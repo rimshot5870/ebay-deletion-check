@@ -160,7 +160,7 @@ if ($verificationResult === 1) {
             //$username = htmlspecialchars($username, ENT_QUOTES, 'UTF-8');
             $data = http_build_query(array('userName' => $username));
             $curl = curl_init();
-            curl_setopt($curl, CURLOPT_URL, 'http://process.abugames.com/ebay/deletePersonalInfo/deletePersonalInfo.php');
+            curl_setopt($curl, CURLOPT_URL, 'http://www.process.abugames.com/ebay/deletePersonalInfo/deletePersonalInfo.php');
             curl_setopt($curl, CURLOPT_POST, true);
             curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
             curl_setopt($curl, CURLOPT_POSTFIELDS, "userName=$username");
@@ -186,8 +186,8 @@ if ($verificationResult === 1) {
             // $context = stream_context_create($opts);
             // $response = file_get_contents('http://process.abugames.com/ebay/deletePersonalInfo/deletePersonalInfo.php', false, $context);
 
-            write_to_file($fileStorageLocation . '/randallTest.txt', array($data));
-            write_to_file($fileStorageLocation . '/randallTest.txt', array($response));
+            write_to_file($fileStorageLocation . '/randallTest.txt', array(json_encode($data)));
+            write_to_file($fileStorageLocation . '/randallTest.txt', array(json_encode($response)));
         }
     
     
