@@ -157,7 +157,14 @@ if ($verificationResult === 1) {
         if ($username) {
             // escape data just in case.  No insert of this data is being done.
             $username = htmlspecialchars($username, ENT_QUOTES, 'UTF-8');
-            echo "<script type='text/javascript'> deleteUser('$username'); </script>";
+            $data = http_build_query(['userName' => $username]);
+            $curl = curl_init('https://process.abugames.com/ebay/deletePersonalInfo/deletePersonalInfo.php');
+            curl_setopt($curl, CURLOPT_POST, true);
+            curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+            $response = curl_exec($curl);
+            curl_close($curl);
+
             write_to_file($fileStorageLocation . '/randallTest.txt', array('something'));
         }
     
@@ -359,23 +366,3 @@ function write_to_file($file, $dataArray = []) {
     }
 
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <script>
-        function deleteUser(userName) {
-            $.post('https://process.abugames.com/ebay/deletePersonalInfo/deletePersonalInfo.php', "userName=" . userName, function(data) {
-                console.log(data);
-            })
-            .fail(function(err) {
-                console.log("deleteUser Error: ", err);
-            })
-            .done(function() {
-                //location.reload();
-            });
-        }
-    </script>
-</head>
