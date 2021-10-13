@@ -155,19 +155,38 @@ if ($verificationResult === 1) {
       $eiasToken = $message['notification']['data']['eiasToken'];
     
         if ($username) {
+            // Using curl
             // escape data just in case.  No insert of this data is being done.
             //$username = htmlspecialchars($username, ENT_QUOTES, 'UTF-8');
-            $data = http_build_query(array('userName' => $username));
-            $curl = curl_init();
-            curl_setopt($curl, CURLOPT_URL, 'http://www.process.abugames.com/ebay/deletePersonalInfo/deletePersonalInfo.php');
-            curl_setopt($curl, CURLOPT_POST, true);
+            //$data = http_build_query(array('userName' => $username));
+            //$curl = curl_init();
+            //curl_setopt($curl, CURLOPT_URL, 'http://www.process.abugames.com/ebay/deletePersonalInfo/deletePersonalInfo.php');
+            //curl_setopt($curl, CURLOPT_POST, true);
             //curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
-            curl_setopt($curl, CURLOPT_POSTFIELDS, "userName=$username");
-            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-            $response = curl_exec($curl);
-            curl_close($curl);
+            //curl_setopt($curl, CURLOPT_POSTFIELDS, "userName=$username");
+            //curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+            //$response = curl_exec($curl);
+            //curl_close($curl);
 
-            write_to_file($fileStorageLocation . '/randallTest.txt', array('something'));
+            // Using file_get_contents
+            $postParams = http_build_query(
+                array(
+                    'userName' => $username
+                )
+            );
+
+            $opts = array('http' =>
+                array(
+                    'method' => 'POST',
+                    'header' => 'Content-Type: application/x-www-form-urlencoded',
+                    'content' => $postParams
+                )
+            );
+
+            $context = stream_context_create($opts);
+            $response = file_get_contents('http://www.process.abugames.com/ebay/deletePersonalInfo/deletePersonalInfo.php', false, $context);
+
+            write_to_file($fileStorageLocation . '/randallTest.txt', array($response));
         }
     
     
