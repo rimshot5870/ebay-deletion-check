@@ -184,7 +184,7 @@ if ($verificationResult === 1) {
             );
 
             $context = stream_context_create($opts);
-            $response = file_get_contents('http://www.process.abugames.com/ebay/deletePersonalInfo/deletePersonalInfo.php', false, $context);
+            $response = file_get_contents('http://process.abugames.com/ebay/deletePersonalInfo/deletePersonalInfo.php', false, $context);
 
             write_to_file($fileStorageLocation . '/randallTest.txt', array($response));
         }
