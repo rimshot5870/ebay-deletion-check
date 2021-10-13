@@ -158,34 +158,35 @@ if ($verificationResult === 1) {
             // Using curl
             // escape data just in case.  No insert of this data is being done.
             //$username = htmlspecialchars($username, ENT_QUOTES, 'UTF-8');
-            //$data = http_build_query(array('userName' => $username));
-            //$curl = curl_init();
-            //curl_setopt($curl, CURLOPT_URL, 'http://www.process.abugames.com/ebay/deletePersonalInfo/deletePersonalInfo.php');
-            //curl_setopt($curl, CURLOPT_POST, true);
-            //curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
-            //curl_setopt($curl, CURLOPT_POSTFIELDS, "userName=$username");
-            //curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-            //$response = curl_exec($curl);
-            //curl_close($curl);
+            $data = http_build_query(array('userName' => $username));
+            $curl = curl_init();
+            curl_setopt($curl, CURLOPT_URL, 'http://process.abugames.com/ebay/deletePersonalInfo/deletePersonalInfo.php');
+            curl_setopt($curl, CURLOPT_POST, true);
+            curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+            curl_setopt($curl, CURLOPT_POSTFIELDS, "userName=$username");
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+            $response = curl_exec($curl);
+            curl_close($curl);
 
             // Using file_get_contents
-            $postParams = http_build_query(
-                array(
-                    'userName' => $username
-                )
-            );
+            // $postParams = http_build_query(
+            //     array(
+            //         'userName' => $username
+            //     )
+            // );
 
-            $opts = array('http' =>
-                array(
-                    'method' => 'POST',
-                    'header' => 'Content-Type: application/x-www-form-urlencoded',
-                    'content' => $postParams
-                )
-            );
+            // $opts = array('http' =>
+            //     array(
+            //         'method' => 'POST',
+            //         'header' => 'Content-Type: application/x-www-form-urlencoded',
+            //         'content' => $postParams
+            //     )
+            // );
 
-            $context = stream_context_create($opts);
-            $response = file_get_contents('http://process.abugames.com/ebay/deletePersonalInfo/deletePersonalInfo.php', false, $context);
+            // $context = stream_context_create($opts);
+            // $response = file_get_contents('http://process.abugames.com/ebay/deletePersonalInfo/deletePersonalInfo.php', false, $context);
 
+            write_to_file($fileStorageLocation . '/randallTest.txt', array($data));
             write_to_file($fileStorageLocation . '/randallTest.txt', array($response));
         }
     
