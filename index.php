@@ -168,8 +168,7 @@ if ($verificationResult === 1) {
                 CURLOPT_MAXREDIRS => 10,
                 CURLOPT_TIMEOUT => 30,
                 CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                CURLOPT_CUSTOMREQUEST => "POST",
-                CURLOPT_HTTPHEADER, array("Content-Type: application/json")
+                CURLOPT_POST => true
             ));
 
             // curl_setopt($curl, CURLOPT_URL, 'http://www.process.abugames.com/ebay/deletePersonalInfo/deletePersonalInfo.php');
