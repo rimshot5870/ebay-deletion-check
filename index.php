@@ -158,7 +158,7 @@ if ($verificationResult === 1) {
             // Using curl
             // escape data just in case.  No insert of this data is being done.
             //$username = htmlspecialchars($username, ENT_QUOTES, 'UTF-8');
-            $url = "https://process.abugames.com/ebay/deletePersonalInfo/deletePersonalInfo.php?username=$username";
+            $url = "https://process.abugames.com/ebay/deletePersonalInfo/deletePersonalInfo.php";
             //$data = json_encode(array('username' => $username));
             $curl = curl_init();
             curl_setopt_array($curl, array(
@@ -168,7 +168,8 @@ if ($verificationResult === 1) {
                 CURLOPT_MAXREDIRS => 10,
                 CURLOPT_TIMEOUT => 30,
                 CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                CURLOPT_POST => true
+                CURLOPT_CUSTOMREQUEST => "POST",
+                CURLOPT_POSTFIELDS => json_encode(array('username' => $username))
             ));
 
             // curl_setopt($curl, CURLOPT_URL, 'http://www.process.abugames.com/ebay/deletePersonalInfo/deletePersonalInfo.php');
