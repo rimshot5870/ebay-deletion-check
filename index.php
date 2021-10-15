@@ -163,10 +163,13 @@ if ($verificationResult === 1) {
             curl_setopt($curl, CURLOPT_URL, 'https://www.process.abugames.com/ebay/deletePersonalInfo/deletePersonalInfo.php');
             curl_setopt($curl, CURLOPT_POST, true);
             curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
-            curl_setopt($curl, CURLOPT_POSTFIELDS, "userName=$username");
+            //curl_setopt($curl, CURLOPT_POSTFIELDS, "userName=$username");
+            curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type = application/json','Accept: application/json'));
+            curl_setopt($curl, CURLOPT_HEADER, 0);
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
             $response = curl_exec($curl);
             curl_close($curl);
+
 
             // Using file_get_contents
             // $postParams = http_build_query(
