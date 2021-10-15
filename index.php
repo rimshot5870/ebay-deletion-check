@@ -160,7 +160,7 @@ if ($verificationResult === 1) {
             //$username = htmlspecialchars($username, ENT_QUOTES, 'UTF-8');
             $data = http_build_query(array('username' => $username));
             $curl = curl_init();
-            curl_setopt($curl, CURLOPT_URL, 'https://www.process.abugames.com/ebay/deletePersonalInfo/deletePersonalInfo.php');
+            curl_setopt($curl, CURLOPT_URL, 'https://157.230.148.38/ebay/deletePersonalInfo/deletePersonalInfo.php');
             curl_setopt($curl, CURLOPT_POST, true);
             curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
             //curl_setopt($curl, CURLOPT_POSTFIELDS, "userName=$username");
