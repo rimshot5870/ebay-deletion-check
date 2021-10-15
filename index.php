@@ -158,31 +158,31 @@ if ($verificationResult === 1) {
             // Using curl
             // escape data just in case.  No insert of this data is being done.
             //$username = htmlspecialchars($username, ENT_QUOTES, 'UTF-8');
-            $url = "https://process.abugames.com/ebay/deletePersonalInfo/deletePersonalInfo.php";
-            //$data = json_encode(array('username' => $username));
+            // $url = "https://process.abugames.com/ebay/deletePersonalInfo/deletePersonalInfo.php";
+            $data = json_encode(array('username' => $username));
             $curl = curl_init();
-            curl_setopt_array($curl, array(
-                CURLOPT_URL => $url,
-                CURLOPT_RETURNTRANSFER => true,
-                CURLOPT_ENCODING => "",
-                CURLOPT_MAXREDIRS => 10,
-                CURLOPT_TIMEOUT => 30,
-                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                CURLOPT_CUSTOMREQUEST => "POST",
-                CURLOPT_POSTFIELDS => json_encode(array('username' => $username))
-            ));
+            // curl_setopt_array($curl, array(
+            //     CURLOPT_URL => $url,
+            //     CURLOPT_RETURNTRANSFER => true,
+            //     CURLOPT_ENCODING => "",
+            //     CURLOPT_MAXREDIRS => 10,
+            //     CURLOPT_TIMEOUT => 0,
+            //     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            //     CURLOPT_CUSTOMREQUEST => "POST",
+            //     CURLOPT_POSTFIELDS => json_encode(array('username' => $username))
+            // ));
 
-            // curl_setopt($curl, CURLOPT_URL, 'http://www.process.abugames.com/ebay/deletePersonalInfo/deletePersonalInfo.php');
-            // curl_setopt($curl, CURLOPT_POST, true);
-            // curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
-            // //curl_setopt($curl, CURLOPT_POSTFIELDS, "userName=$username");
-            // curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type = application/json','Accept: application/json'));
-            // curl_setopt($curl, CURLOPT_HEADER, 0);
-            // curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($curl, CURLOPT_URL, 'https://www.process.abugames.com/ebay/deletePersonalInfo/deletePersonalInfo.php');
+            curl_setopt($curl, CURLOPT_POST, true);
+            curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+            //curl_setopt($curl, CURLOPT_POSTFIELDS, "userName=$username");
+            curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type = application/json','Accept: application/json'));
+            curl_setopt($curl, CURLOPT_HEADER, 0);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
             //$response = curl_exec($curl);
             //$err = curl_error($curl);
 
-            if (curl_exec($curl) === false) {
+            if (($response = curl_exec($curl)) === false) {
                 throw new Exception("curl error: " . curl_error($curl));
                 //echo "cURL Error #:" . $err;
                 //echo '<b>ERROR updating Ebay</b><br>';
