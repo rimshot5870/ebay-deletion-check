@@ -180,13 +180,13 @@ if ($verificationResult === 1) {
             curl_setopt($curl, CURLOPT_HEADER, 0);
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
             $response = curl_exec($curl);
-            //$err = curl_error($curl);
+            $err = curl_error($curl);
 
-            //if (($response = curl_exec($curl)) === false) {
-                //throw new Exception("curl error: " . curl_error($curl));
+            if ($err) {
+                throw new Exception("curl error: " . curl_error($curl));
                 //echo "cURL Error #:" . $err;
                 //echo '<b>ERROR updating Ebay</b><br>';
-            //}
+            }
 
             curl_close($curl);
 
