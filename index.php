@@ -182,6 +182,13 @@ if ($verificationResult === 1) {
 
 
             $response = curl_exec($curl);
+            $err = curl_error($curl);
+
+            if ($err) {
+                echo "cURL Error #:" . $err;
+                echo '<b>ERROR updating Ebay</b><br>';
+            }
+            
             curl_close($curl);
 
 
