@@ -172,7 +172,7 @@ if ($verificationResult === 1) {
             //     CURLOPT_POSTFIELDS => json_encode(array('username' => $username))
             // ));
 
-            curl_setopt($curl, CURLOPT_URL, 'https://www.process.abugames.com/ebay/deletePersonalInfo/deletePersonalInfo.php');
+            curl_setopt($curl, CURLOPT_URL, 'http://process.abugames.com/ebay/deletePersonalInfo/deletePersonalInfo.php');
             curl_setopt($curl, CURLOPT_POST, true);
             curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
             //curl_setopt($curl, CURLOPT_POSTFIELDS, "userName=$username");
